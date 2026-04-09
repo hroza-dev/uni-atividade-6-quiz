@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz: Marvel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container inicio">
+        <h1>Você é fã da Marvel? Vamos ver!</h1>
+        <button>Iniciar Quiz</button>
+    </div>
+
+    <div class="container perguntas">
+        <h2>Pergunta 1</h2>
+        <p>Quantas Joias do Infinito existem?</p>
+
+        <label>
+            <input type="radio" name="q1" value="errado"> Quatro
+        </label>
+        <label>
+            <input type="radio" name="q1" value="errado"> Cinco
+        </label>
+        <label>
+            <input type="radio" name="q1" value="certo"> Seis
+        </label>
+        <label>
+            <input type="radio" name="q1" value="errado"> Sete
+        </label>
+
+        <h2>Pergunta 2</h2>
+        <p>De qual material é feito o escudo do Capitão América?</p>
+
+        <label>
+            <input type="radio" name="q2" value="errado"> Adamantium
+        </label>
+        <label>
+            <input type="radio" name="q2" value="certo"> Vibranium
+        </label>
+        <label>
+            <input type="radio" name="q2" value="errado"> Ferro
+        </label>
+        <label>
+            <input type="radio" name="q2" value="errado"> Aço
+        </label>
+
+        <h2>Pergunta 3</h2>
+        <p>Qual filme deu início ao Universo Cinematográfico da Marvel?</p>
+
+        <label>
+            <input type="radio" name="q3" value="certo"> Homem de Ferro
+        </label>
+        <label>
+            <input type="radio" name="q3" value="errado"> Thor
+        </label>
+        <label>
+            <input type="radio" name="q3" value="errado"> Capitão América
+        </label>
+        <label>
+            <input type="radio" name="q3" value="errado"> Os Vingadores
+        </label>
+
+        <br><br>
+        <button>Enviar Respostas</button>
+    </div>
+
+    <div class="container resultado">
+        <h1>Resultado Final</h1>
+        <p>resultado</p>
+        <p>feedback</p>
+    </div>
+
+    <script>
+        const inicio = document.querySelector(".inicio");
+        const perguntas = document.querySelector(".perguntas");
+        const resultado = document.querySelector(".resultado");
+
+        const btnIniciar = document.querySelector(".inicio button");
+        const btnEnviar = document.querySelector(".perguntas button");
+
+        perguntas.style.display = "none";
+        resultado.style.display = "none";
+
+        btnIniciar.onclick = function () {
+            inicio.style.display = "none";
+            perguntas.style.display = "block";
+        };
+
+        btnEnviar.onclick = function () {
+            let pontos = 0;
+
+            const respostasMarcadas = document.querySelectorAll(
+                'input[type="radio"]:checked'
+            );
+
+            respostasMarcadas.forEach((resposta) => {
+                if (resposta.value === "certo") {
+                    pontos++;
+                }
+            });
+
+            let feedback = "";
+
+            if (pontos === 0) {
+                feedback = "Péssimo, melhore!";
+            } else if (pontos === 1) {
+                feedback = "Dá pra melhorar";
+            } else if (pontos === 2) {
+                feedback = "Quase lá";
+            } else if (pontos === 3) {
+                feedback = "Você é fã de verdade, parabéns";
+            }
+
+            perguntas.style.display = "none";
+            resultado.style.display = "block";
+
+            const ps = resultado.querySelectorAll("p");
+            ps[0].innerText = "Você acertou " + pontos + " de 3 perguntas.";
+            ps[1].innerText = feedback
+
+        };
+    </script>
+</body>
+
+</html>
